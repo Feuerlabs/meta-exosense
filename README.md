@@ -283,13 +283,18 @@ Power on the SBC6845.
 
 Interrupt the boot process by pressing space immediately after power on
 
-Connect an ethernet cable and setup the device IP address
+Connect an ethernet cable and setup the device IP address and boot params
 
     setenv ipaddr 192.168.0.2      # Device IP
     setenv netmask 255.255.255.0
     setenv serverip 192.168.13.45  # TFTP server ip
+    setenv bootargs=console=ttySAC6,115200 ubi.mtd=2 root=ubi0:sbc6845-rootfs rootfstype=ubifs
+    setenv bootcmd=nand read.i 0x72000000 0x00000000 0x260000; bootm
     saveenv
 
+Note: The third bootcmd read size parameter, 0x2600000, may need to be adjusted upward
+to be equal to or greater than the loaded uImage file size. See the result of the tftp command used
+to retrieve uImage to see the minimum read size parameter value.
 
 Wipe the entire nand area
 
@@ -298,7 +303,7 @@ Wipe the entire nand area
 Load and flash the ubi volume image with the rootfs ubifs
 
     tftp 0x70000000 core-image-minimal-sbc6845.ubi
-    nand write.i 0x70000000 0xba00000 $(filesize)
+    nand write.i 0x70000000 0xba0000 $(filesize)
 
 Load the boot uImage
 
