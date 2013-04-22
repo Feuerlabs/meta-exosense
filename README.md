@@ -39,14 +39,15 @@ There are five directories that will be referenced throughout the
 build. These directories can be placed anywhere in the tree, even
 inside each other. However, since directories are each maintained by their own
 repositories, it is recommended that they are kept in the same parent
-directory. 
+directory.
 
-1. Yocto [$YOCTO]  
-This is the stock Yocto distribution that can generate a linux distro
-image for a a wide vaiety of target hardware. It is downloaded from
-the Yocto project site and will not change during the build process.
+1. Yocto [$YOCTO]
+This is the stock Yocto (poky-danny-8.0) distribution that can
+generate a linux distro image for a a wide vaiety of target
+hardware. It is downloaded from the Yocto project site and will not
+change during the build process.
 
-2. Exosense Device [$EXOSENSE]  
+2. Exosense Device [$EXOSENSE]
 This is the extensions to Yocto provided by Feurelabs. Included in
 these build instructions is an erlang build as well as rebar and
 tetrapak integration, all sourced from Travelping's TPLINO
@@ -54,12 +55,12 @@ distribution. Also included is the build instructions for all Exosense
 Device components. The directory is checked out from the Feuerlabs
 github repo and will not change during the build process.
 
-3. SBC6845 support [$SBC6845] *OPTIONAL*  
+3. SBC6845 support [$SBC6845] *OPTIONAL*
 This directory adds support for the SBC6845 to Yocto through as BSP
 layer. It is checked out from the Feuerlabs github repo and will not
 change during the build process.
 
-4. Exosense Device Application Build [$DEMOBUILD]  
+4. Exosense Device Application Build [$DEMOBUILD]
 Contains build instructions for the application running on top of the
 Exosense Device stack. The instructions are usually copied from the
 Exosense Device demo application in the Feuerlabs github repo and are
@@ -68,7 +69,7 @@ not contain the application code itself, which is downloaded from a
 git/svn/http/whatever repo by the Yocto build instructions in
 `$DEMOBUILD`
 
-5. Build [$BUILD]  
+5. Build [$BUILD]
 The directory where the build process is executed. Will swell 20+ GB
 during the process. The build directory is created through a yocto
 initialization command.  Once created, the template configuration
@@ -102,7 +103,7 @@ Please check the Yocto quick start guide for further details if another host env
 ## Download and install the latest Yocto release
 
 1. Download Yocto 1.3
-The URL for this Yocto release is 
+The URL for this Yocto release is
         cd /tmp
         wget http://downloads.yoctoproject.org/releases/yocto/yocto-1.3/poky-danny-8.0.tar.bz2
 This will download the yocto release to /tmp.
@@ -115,7 +116,7 @@ The downloaded file can be unpacked using the following commands:
 
 This will create the Yocto directory structure under `/home/bob/poky-danny-8.0`.
 
-   
+
 ## Download and install the latest Exosense Device release
 
 1. Download Exosense 1.0
@@ -133,10 +134,10 @@ This will create the Yocto directory structure under `/home/bob/exodev`.
 Checkout the template application with into `$DEMOBUILD` with:
 
         git clone --bare git@github.com:magnusfeuer/meta-exodemo.git app
-	
+
 The git command creates a Yocto layer under `/home/bob/meta-exodemo` (`$DEMOBUILD`)
 containing recipes (build instructions) used to compile and package
-the Exosense Device Application. 
+the Exosense Device Application.
 
 Please note that this directory only contains Yocto build instructions
 ; the actual application code itself is managed by its own repository
@@ -153,7 +154,7 @@ Generate the build directory, `$BUILD`, using the following commands:
 
     cd $YOCTO
     . oe-init-build-env $BUILD
-	
+
 This will create the `/home/bob/build/conf` (`$BUILD`) directory containing
 two files: `bblayers.conf` and `local.conf`. Once this script has
 executed, all builds should be executed from the build directory.
@@ -223,7 +224,7 @@ host system has:
 This entry is provided as an argument to make to specify the number of
 parallel compiles to run. Uncomment and set to the number of cores
 that the hos system has.
-	
+
     PARALLEL_MAKE = "-j 8"
 
 ### MACHINE
@@ -270,7 +271,7 @@ An image is generated using
 
 See the Yocto quick start guide for a primer on the various images
 available. Please note that `$BUILD/conf/local.conf` can be updated to
-add features and packages. 
+add features and packages.
 
 
 
@@ -285,14 +286,14 @@ Interrupt the boot process by pressing space immediately after power on
 Connect an ethernet cable and setup the device IP address
 
     setenv ipaddr 192.168.0.2      # Device IP
-    setenv netmask 255.255.255.0   
+    setenv netmask 255.255.255.0
     setenv serverip 192.168.13.45  # TFTP server ip
     saveenv
 
 
 Wipe the entire nand area
 
-    nand erase 
+    nand erase
 
 Load and flash the ubi volume image with the rootfs ubifs
 
