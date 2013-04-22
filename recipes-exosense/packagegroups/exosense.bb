@@ -33,4 +33,5 @@ RDEPENDS_${PN} = "\
     erlang-setup \
 "
 
-PACKAGES = "${PN}"
+PACKAGES = "${PN} \
+"

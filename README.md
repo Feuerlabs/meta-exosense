@@ -240,7 +240,7 @@ file. Add the following line anywhere in `local.conf` to include the
 Exosense Device demo application built by the recipes located under
 `$DEMOBUILD`.
 
-    IMAGE_INSTALL_append = " erlang-exodemo"
+    IMAGE_INSTALL_append = " erlang-exodemo exosense"
 
 
 ### EXTRA_IMAGE_FEAUTURES
@@ -273,3 +273,38 @@ available. Please note that `$BUILD/conf/local.conf` can be updated to
 add features and packages. 
 
 
+
+# Image Flash Instructions for the SBC6845
+
+Setup a serial connection to the SBC6845 debug DB9 port. 115200 8N1
+
+Power on the SBC6845.
+
+Interrupt the boot process by pressing space immediately after power on
+
+Connect an ethernet cable and setup the device IP address
+
+    setenv ipaddr 192.168.0.2      # Device IP
+    setenv netmask 255.255.255.0   
+    setenv serverip 192.168.13.45  # TFTP server ip
+    saveenv
+
+
+Wipe the entire nand area
+
+    nand erase 
+
+Load and flash the ubi volume image with the rootfs ubifs
+
+    tftp 0x70000000 core-image-minimal-sbc6845.ubi
+    nand write.i 0x70000000 0xba00000 $(filesize)
+
+Load the boot uImage
+
+    tftp 0x72000000 uImage
+    nand write.i 0x72000000 0x0 $(filesize)
+
+
+Boot the image
+
+    boot
