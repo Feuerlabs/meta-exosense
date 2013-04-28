@@ -288,13 +288,15 @@ Connect an ethernet cable and setup the device IP address and boot params
     setenv ipaddr 192.168.0.2      # Device IP
     setenv netmask 255.255.255.0
     setenv serverip 192.168.13.45  # TFTP server ip
-    setenv bootargs=console=ttySAC6,115200 ubi.mtd=2 root=ubi0:sbc6845-rootfs rootfstype=ubifs
-    setenv bootcmd=nand read.i 0x72000000 0x00000000 0x260000; bootm
+    setenv bootargs console=ttySAC6,115200 ubi.mtd=2 root=ubi0:sbc6845-rootfs rootfstype=ubifs
+    setenv bootcmd nand read.i 0x72000000 0x00000000 0x260000; bootm
     saveenv
 
 Note: The third bootcmd read size parameter, 0x2600000, may need to be adjusted upward
 to be equal to or greater than the loaded uImage file size. See the result of the tftp command used
 to retrieve uImage to see the minimum read size parameter value.
+
+Note: Please see "Setting Device Identities" for instructions on how to specify exosense server address, device ID, and device keys in the linux boot params.
 
 Wipe the entire nand area
 
@@ -314,3 +316,21 @@ Load the boot uImage
 Boot the image
 
     boot
+
+
+# Exosense Device Boot Sequence
+
+# Setting Device Identity
+
+
+# Adding the device to the Exosense Server
+
+## Uploading the RPC Yang specification
+
+## Adding a device type
+
+## Adding a configuration set
+
+## Adding
+
+# Sending an RPC to a device
