@@ -311,9 +311,10 @@ Connect an ethernet cable and setup the device IP address and boot params
     setenv bootcmd 'nand read.i 0x72000000 0x00000000 0x260000; bootm'
     saveenv
 
-Note: The third bootcmd read size parameter, 0x2600000, may need to be adjusted upward
-to be equal to or greater than the loaded uImage file size. See the result of the tftp command used
-to retrieve uImage to see the minimum read size parameter value.
+Note: The third bootcmd read size parameter, 0x2600000, may need to be
+adjusted upward to be equal to or greater than the loaded uImage file
+size. See the result of the tftp command used to retrieve uImage to
+see the minimum read size parameter value.
 
 Note: Please see "Setting Device Identities" for instructions on how
 to specify exosense server address, device ID, and device keys in the
@@ -328,7 +329,7 @@ Load and flash the ubi volume image with the rootfs ubifs
     tftp 0x70000000 core-image-minimal-sbc6845.ubi
     nand write.i 0x70000000 0xba0000 $(filesize)
 
-nLoad the boot uImage
+Load the boot uImage
 
     tftp 0x72000000 uImage
     nand write.i 0x72000000 0x0 $(filesize)
@@ -355,7 +356,7 @@ setup since there will be no need to boot each flashed unit in order to customiz
 
 The following boot parameters are detected by the Exosense Device stack
 
-1. exo\_host 
+1. exo\_host
 Specifies the fully qualified domain name (if DNS is availble) or IP
 address (if DNS is not available) of the Exosense Server that the
 device should use when it has a connection.
@@ -387,7 +388,7 @@ with artificial line breaks.
 
     setenv bootargs console=ttySAC6,115200 ubi.mtd=2 root=ubi0:sbc6845-rootfs rootfstype=ubifs \
 	exo_host=test.feuberlabs.com exo_account=my_account exo_device_id=tst-1 \
-	exo_server_key=1234567890 export exo_device_key=0987654321
+	exo_server_key=1234567890 exo_device_key=0987654321
 
 When Linux boots, all boot parameters not recognized by the kernel
 will be passed on to init as environment variables. Init will launch
@@ -449,3 +450,10 @@ stack. Please see the Exosense Device Boot Sequence for details.
 ## Adding
 
 # Sending an RPC to a device
+
+# Fault searching
+
+## Crash with no connect
+Check that ethernet is unplugged.
+Check that bootparams/env/config is setup
+
