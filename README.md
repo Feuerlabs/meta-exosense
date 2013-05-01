@@ -11,9 +11,9 @@ This file.
 Please see the README.md file at `https://github.com/Feuerlabs/exodemo`
 Also check the following chapters in this document for information on
 getting the demo application up and running<br>
-    `Setting Device Identity<br>
-    Adding Device to Exosense Server<br>
-    Sending RPC to Device`
+    `Setting Device Identity`<br>
+    `Adding Device to Exosense Server`<br>
+    `Sending RPC to Device`
     
 2. Exosense Server Usage
 Please see the README.md file at
