@@ -1,6 +1,24 @@
 # Exosense Device Build System
 (C) 2013 Feuerlabs, inc
 
+
+# Documentaion locations
+
+1. Building a flashable Exosense Device Demo application image 
+This file.
+
+1. Building an Exosense Device Demo application for desktop use.
+Please see the README.md file at `https://github.com/Feuerlabs/exodemo`
+Also check the [Setting Device
+
+2. Exosense Server Usage
+Please see the README.md file at
+ `https://github.com/Feuerlabs/exosense_specs`<br> This repo contains
+an Exosnese Server User Manual, a JSON-RPC Reference Manual, and
+sample shell scripts using curl(1) to interface the server.
+
+
+
 # Introduction
 This repository contains the Feuerlabs' build system that generates
 images with erlang and the Exosense Device stack for various hardware
@@ -25,7 +43,7 @@ All Exosense Device components are compiled for the target.
 
 3. Reference Hardware Support
 The reference hardware supported by Feuerlabs for the Exosense Device
-stack is integrated into the exodev repo. Currently, this is limited
+stack is integrated into the exosense repo. Currently, this is limited
 to the SBC6845.
 
 # Further documentation
@@ -134,9 +152,9 @@ This will create the Yocto directory structure under `/home/bob/poky-danny-8.0`.
 Clone the git repository into `$EXOSENSE` with:
 
         cd /home/bob
-        git clone --bare -b 1.0 git@github.com:magnusfeuer/exodev.git
+        git clone --bare -b 1.0 git@github.com:magnusfeuer/meta-exosense.git
 
-This will create the Yocto directory structure under `/home/bob/exodev`.
+This will create the Yocto directory structure under `/home/bob/meta-exosense`.
 
 
 ## Setup an application build system
@@ -316,7 +334,7 @@ adjusted upward to be equal to or greater than the loaded uImage file
 size. See the result of the tftp command used to retrieve uImage to
 see the minimum read size parameter value.
 
-Note: Please see "Setting Device Identities" for instructions on how
+Note: Please see [Setting Device Identity] for instructions on how
 to specify exosense server address, device ID, and device keys in the
 linux boot params.
 
@@ -417,7 +435,7 @@ file is given below.
 
 	{ host, "test.feuerlabs.com }.
 	{ account, "my_account" }.
-	{ 'device_id', "think-1" }.
+	{ 'device_id', "demo-1" }.
 	{ 'server_key', 1234567890 }.
 	{ 'device_key', 0987654321 }.
 
@@ -433,12 +451,9 @@ will use `setup_gen` to collect all config files into a single
 directory that is used as a configuration directory by the exosense
 stack. Please see the Exosense Device Boot Sequence for details.
 
-# Exosense Device Boot Sequence
-
-
 
 # Adding the device to the Exosense Server
-
+All communication with the Exosense Server is conducted through its JSON-RPC interface. 
 
 
 ## Uploading the RPC Yang specification
@@ -450,6 +465,9 @@ stack. Please see the Exosense Device Boot Sequence for details.
 ## Adding
 
 # Sending an RPC to a device
+
+# Exosense Device Boot Sequence
+
 
 # Fault searching
 
