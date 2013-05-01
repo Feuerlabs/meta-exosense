@@ -10,11 +10,10 @@ This file.
 1. Building an Exosense Device Demo application for desktop use.
 Please see the README.md file at `https://github.com/Feuerlabs/exodemo`
 Also check the following chapters in this document for information on
-getting the demo application up and running
-    
-    Setting Device Identity
+getting the demo application up and running<br>
+    `Setting Device Identity
     Adding Device to Exosense Server
-    Sending RPC to Device
+    Sending RPC to Device`
     
 2. Exosense Server Usage
 Please see the README.md file at
