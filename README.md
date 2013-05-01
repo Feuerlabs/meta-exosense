@@ -5,11 +5,10 @@
 
 # Documentaion Locations
 
-1. Building a flashable Exosense Device Demo application image
-
+1. **Building flashable Exosense Device Demo application image**<br>
 This document.
 
-1. Building an Exosense Device Demo application for desktop use<br>
+2. **Building Exosense Device Demo application for desktop use**<br>
 Please see the README.md file at `https://github.com/Feuerlabs/exodemo`
 Also check the following chapters in this document for information on
 getting the demo application up and running<br>
@@ -18,12 +17,11 @@ getting the demo application up and running<br>
   * Adding Device to Exosense Server
   * Sending RPC to Device
     
-2. Exosense Server Usage<br>
+3. **Exosense Server Usage**<br>
 Please see the README.md file at
  `https://github.com/Feuerlabs/exosense_specs`<br> This repo contains
 an Exosnese Server User Manual, a JSON-RPC Reference Manual, and
 sample shell scripts using curl(1) to interface the server.
-
 
 
 # Introduction
@@ -42,13 +40,13 @@ environment.
 The build system uses yocto (http://www.yoctoproject.org), and
 provides the following additions:
 
-1. Erlang<br>
+1. **Erlang**<br>
 R15B1 is compiled for the given target.
 
-2. Exosense Device<br>
+2. **Exosense Device**<br>
 All Exosense Device components are compiled for the target.
 
-3. Reference Hardware Support<br>
+3. **Reference Hardware Support**<br>
 The reference hardware supported by Feuerlabs for the Exosense Device
 stack is integrated into the exosense repo. Currently, this is limited
 to the SBC6845.
@@ -77,13 +75,13 @@ inside each other. However, since directories are each maintained by their own
 repositories, it is recommended that they are kept in the same parent
 directory.
 
-1. Yocto [$YOCTO]<br>
+1. **Yocto [$YOCTO]**<br>
 This is the stock Yocto (poky-danny-8.0) distribution that can
 generate a linux distro image for a a wide vaiety of target
 hardware. It is downloaded from the Yocto project site and will not
 change during the build process.
 
-2. Exosense Device [$EXOSENSE]<br>
+2. **Exosense Device [$EXOSENSE]**<br>
 This is the extensions to Yocto provided by Feurelabs. Included in
 these build instructions is an erlang build as well as rebar and
 tetrapak integration, all sourced from Travelping's TPLINO
@@ -91,12 +89,12 @@ distribution. Also included is the build instructions for all Exosense
 Device components. The directory is checked out from the Feuerlabs
 github repo and will not change during the build process.
 
-3. SBC6845 support [$SBC6845] *OPTIONAL*<br>
+3. **SBC6845 support [$SBC6845] *OPTIONAL***<br>
 This directory adds support for the SBC6845 to Yocto through as BSP
 layer. It is checked out from the Feuerlabs github repo and will not
 change during the build process.
 
-4. Exosense Device Application Build [$DEMOBUILD]<br>
+4. **Exosense Device Application Build [$DEMOBUILD]**<br>
 Contains build instructions for the application running on top of the
 Exosense Device stack. The instructions are usually copied from the
 Exosense Device demo application in the Feuerlabs github repo and are
@@ -105,7 +103,7 @@ not contain the application code itself, which is downloaded from a
 git/svn/http/whatever repo by the Yocto build instructions in
 `$DEMOBUILD`
 
-5. Build [$BUILD]<br>
+5. **Build [$BUILD]**<br>
 The directory where the build process is executed. Will swell 20+ GB
 during the process. The build directory is created through a yocto
 initialization command.  Once created, the template configuration
@@ -138,13 +136,13 @@ Please check the Yocto quick start guide for further details if another host env
 
 ## Download and install the latest Yocto release
 
-1. Download Yocto 1.3<br>
+1. **Download Yocto 1.3**<br>
 The URL for this Yocto release is
         cd /tmp
         wget http://downloads.yoctoproject.org/releases/yocto/yocto-1.3/poky-danny-8.0.tar.bz2
 This will download the yocto release to /tmp.
 
-2. Unpack the Yocto release into `$YOCTO`<br>
+2. **Unpack the Yocto release into `$YOCTO`**<br>
 The downloaded file can be unpacked using the following commands:
 
         cd /home/bob
@@ -155,7 +153,7 @@ This will create the Yocto directory structure under `/home/bob/poky-danny-8.0`.
 
 ## Download and install the latest Exosense Device release
 
-1. Download Exosense 1.0
+1. **Download Exosense 1.0**<br>
 Clone the git repository into `$EXOSENSE` with:
 
         cd /home/bob
@@ -166,7 +164,7 @@ This will create the Yocto directory structure under `/home/bob/meta-exosense`.
 
 ## Setup an application build system
 
-1. Download the Exosense Device demo application build layer
+1. **Download the Exosense Device demo application build layer**<br>
 Checkout the template application with into `$DEMOBUILD` with:
 
         git clone --bare git@github.com:magnusfeuer/meta-exodemo.git app
@@ -367,7 +365,8 @@ act as a unique unit in a network. The device identity needs to be
 setup both in the device and in the server before the device can
 connect.
 
-The chapter [Adding the device to the Exosense Server] describes how to setup the device in the server.
+The chapter "Adding Device to Exosense Server" describes how to setup
+the device in the server.
 
 
 ## Setting the device identity through Linux boot parameters
@@ -381,28 +380,28 @@ setup since there will be no need to boot each flashed unit in order to customiz
 
 The following boot parameters are detected by the Exosense Device stack
 
-1. exo\_host
+1. **exo\_host**<br>
 Specifies the fully qualified domain name (if DNS is availble) or IP
 address (if DNS is not available) of the Exosense Server that the
 device should use when it has a connection.
 
-2. exo\_account
+2. **exo\_account**<br>
 Specifies the account in the Exosense Server that the device shall
 authenticate itself with. The account must have been created in the
 server with the create-account JSON-RPC command.
 
-3. exo\_device\_id
+3. **exo\_device\_id**<br>
 Specifies the device-id string to use when authenticating the device
 toward the Exosense Server.  The device must have been provisioned in
 the server with the create-device JSON-RPC command.
 
-4. exo\_device\_key
+4. **exo\_device\_key**<br>
 Specifies the device key that the device will use to authenticate
 itself with toward the server. Please note that this is a 64 bit key
 used only for authentication, not encryption. If a stronger security
 is needed, OpenSSL is recommended.
 
-5. exo\_server\_key
+5. **exo\_server\_key**<br>
 Specifies the server key that the server must use to authenticate
 itself with toward the device. Please note that this is a 64 bit key
 used only for authentication, not encryption. If a stronger security
