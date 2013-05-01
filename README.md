@@ -1,13 +1,14 @@
 # Exosense Device Build System
-(C) 2013 Feuerlabs, inc
+
+(C) 2013 Feuerlabs, inc. All Rights Reservered
 
 
-# Documentaion locations
+# Documentaion Locations
 
-1. Building a flashable Exosense Device Demo application image 
-This file.
+1. Building a flashable Exosense Device Demo application image
+   This document.
 
-1. Building an Exosense Device Demo application for desktop use.
+1. Building an Exosense Device Demo application for desktop use<br>
 Please see the README.md file at `https://github.com/Feuerlabs/exodemo`
 Also check the following chapters in this document for information on
 getting the demo application up and running<br>
@@ -15,7 +16,7 @@ getting the demo application up and running<br>
     `Adding Device to Exosense Server`<br>
     `Sending RPC to Device`
     
-2. Exosense Server Usage
+2. Exosense Server Usage<br>
 Please see the README.md file at
  `https://github.com/Feuerlabs/exosense_specs`<br> This repo contains
 an Exosnese Server User Manual, a JSON-RPC Reference Manual, and
