@@ -12,7 +12,9 @@ Please see the README.md file at `https://github.com/Feuerlabs/exodemo`
 Also check the following chapters in this document for information on
 getting the demo application up and running
     
-    [[Setting Device Identity]]
+    Setting Device Identity
+    Adding Device to Exosense Server
+    Sending RPC to Device
     
 2. Exosense Server Usage
 Please see the README.md file at
@@ -455,11 +457,11 @@ directory that is used as a configuration directory by the exosense
 stack. Please see the Exosense Device Boot Sequence for details.
 
 
-# Adding the device to the Exosense Server
+# Adding Device to Exosense Server
 All communication with the Exosense Server is conducted through its JSON-RPC interface. 
 
 
-## Uploading the RPC Yang specification
+## Uploading  RPC Yang Specification
 
 ## Adding a device type
 
@@ -467,7 +469,7 @@ All communication with the Exosense Server is conducted through its JSON-RPC int
 
 ## Adding
 
-# Sending an RPC to a device
+# Sending RPC to Device
 
 # Exosense Device Boot Sequence
 
