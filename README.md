@@ -9,8 +9,11 @@ This file.
 
 1. Building an Exosense Device Demo application for desktop use.
 Please see the README.md file at `https://github.com/Feuerlabs/exodemo`
-Also check the [Setting Device
-
+Also check the following chapters in this document for information on
+getting the demo application up and running
+    
+    [[Setting Device Identity]]
+    
 2. Exosense Server Usage
 Please see the README.md file at
  `https://github.com/Feuerlabs/exosense_specs`<br> This repo contains
@@ -334,7 +337,7 @@ adjusted upward to be equal to or greater than the loaded uImage file
 size. See the result of the tftp command used to retrieve uImage to
 see the minimum read size parameter value.
 
-Note: Please see [Setting Device Identity] for instructions on how
+Note: Please see [[Setting Device Identity]] for instructions on how
 to specify exosense server address, device ID, and device keys in the
 linux boot params.
 
