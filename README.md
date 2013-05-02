@@ -722,16 +722,16 @@ A valid JSON-RPC script sent to the server would be:
       }
     }
 
-- **`exodemo:beep`** <br>
+- `exodemo:beep`<br>
 The method to be invoked on the device, where
 `exodemo` is the namespace of the spec, and `beep` is the actual
 method.
 
-- **`device-id`** <br>
+- `device-id`<br>
 Specifies the target device, as previously created with
 the create-device.sh scripot.
 
-- **`duration`**<br>
+- `duration`<br>
 The single argument provided to the `beep` method on the device.
 
 Finally, this method can be integrated into a shell script that uses curl:
@@ -860,16 +860,16 @@ To send back a notification, use this code instead:
          {'final', true },
          {'extra', "Beep! Beep!" } ] }.
 
-- **`rpc-status` [mandatory]**<br>
+- `rpc-status` [mandatory]<br>
 Has a status value taken from the `status-code` enum
 in `exosense.yang`, which can be found in the
 `https://github.com/Feuerlabs/exosense_specs` repository.
 
-- **`final` [mandatory]**<br>
+- `final` [mandatory]<br>
 Can be `true` or `false` and indicates if more notifications are to
 follow for this transaction.
 
-- **`extra`**<br>
+- `extra`<br>
 Specifies the string value of the `extra` argument to the
 `beep-notification` call added to the `exosense.yang` file.
 
