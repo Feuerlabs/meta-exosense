@@ -763,7 +763,10 @@ $USER_AUTH and $URL.
 
 ## Invoking the shell script
 When the shell script above is invoked, it will send the JSON-RPC command to the
-Exosense Server,
+Exosense Server.
+
+    sh beep.sh demo-1 1234
+
 
 The server will respond with the following receipt.
 
@@ -778,6 +781,10 @@ The server will respond with the following receipt.
 	  "jsonrpc":"2.0"
 	}
 
+The demo application will, when it receives the call, emit a message
+from its `exodemo_rpc:beep()` method:
+
+    beep([{'device-id',<<"demo-1">>},{duration,1234}])
 
 # Changing the RPC interface to the demo application.
 If the `beep` method is to return a value to the server, to be
