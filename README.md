@@ -196,7 +196,7 @@ This will create the `/home/bob/build/conf` (`$BUILD`) directory containing
 two files: `bblayers.conf` and `local.conf`. Once this script has
 executed, all builds should be executed from the build directory.
 
-If you are using git, svn, p4, or other version control system, you
+If git, svn, p4, or other version control system is used, you
 should add the `$BUILD` directory and its content to it at this
 point. Once the build has started $BUILD will get populated with
 additional directories and files that should not be version managed.
@@ -796,7 +796,7 @@ The following chapters shows how to implement such a notification.
 
 
 
-## Modifying the Yang specification
+## Modify the Yang specification
 
 The notification has the following format in Yang:
 
@@ -812,10 +812,10 @@ The notification has the following format in Yang:
 
 Insert it anywhere in the `exodemo.yang` file.
 
-## Validating the modified Yang specification
-If you have changed the yang specification, it should be validated
-prior to being uploaded to the server. The pyang validator is the
-standard tool to accomplish this:
+## Validate the edited Yang specification
+A changed yang specification should be validated prior to being
+uploaded to the server. The pyang validator is the standard tool to
+accomplish this:
 
     http://code.google.com/p/pyang/
 
@@ -835,7 +835,7 @@ checked out exosense_specs repo.
 If pyang provides no output, the specification is valid and can be
 uploaded to the Exosense Server.
 
-## Uploading the modified Yang specification
+## Upload the modified Yang specification
 Use the `create-yang-module.sh` script to upload the `exodemo.yang`
 file to the Exosense Server:
 
@@ -846,7 +846,10 @@ modified specification.
 
 The new specification will replace the old version in the Exosense Server.
 
-## Updating the exosense demo application
+## Update the Exosense demo application
+
+All code for the Exosense demo application is in the `src` subdirectory under top
+directory where `https://github.com/Feuerlabs/exodemo` has been checked out.
 
 Notifications are sent back from the device by replacing the `ok`
 return value from `exodemo_rpc:beep` with a `{ notification, ...}`
@@ -880,9 +883,25 @@ follow for this transaction.
 Specifies the string value of the `extra` argument to the
 `beep-notification` call added to the `exosense.yang` file.
 
-## Rebuilding the exosense demo application for desktop
-Go to the root
-## Rebuilding the exosense demo image
+## Rebuild the Exosense demo application on desktop
+
+Go to the top of the checked out
+`https://github.com/Feuerlabs/exodemo` repository and recompile:
+
+    make
+
+If any changes have been made to the `priv/*.config` files, update the setup directory:
+
+    make setup
+
+
+Relaunch the Exosense demo application:
+
+    sh local_start_demo.sh
+
+
+## Rebuilding the flashable Exosense demo image
+
 
 # Fault searching
 
