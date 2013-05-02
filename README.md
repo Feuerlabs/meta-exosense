@@ -722,16 +722,16 @@ A valid JSON-RPC script sent to the server would be:
       }
     }
 
-- **`exodemo:beep`**<br>
+- **`exodemo:beep`** <br>
 The method to be invoked on the device, where
 `exodemo` is the namespace of the spec, and `beep` is the actual
 method.
 
-- **`device-id`**<br>
+- **`device-id`** <br>
 Specifies the target device, as previously created with
 the create-device.sh scripot.
 
--**`duration`**<br>
+- **`duration`**<br>
 The single argument provided to the `beep` method on the device.
 
 Finally, this method can be integrated into a shell script that uses curl:
