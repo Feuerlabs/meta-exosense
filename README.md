@@ -9,7 +9,7 @@
 This document.
 
 2. **Building Exosense Device Demo application for desktop use**<br>
-Please see the README.md file at `https://github.com/Feuerlabs/exodemo`
+Please see the README.md file in `https://github.com/Feuerlabs/exodemo`
 Also check the following chapters in this document for information on
 getting the demo application up and running<br>
 
@@ -541,7 +541,7 @@ The `ppp-start` script is launched by the `exodev_ctl` script. See the
 See the `pppd(8)` manpage for details on how to setup ppp links in Linux.
 
 
-# Adding Device to Exosense Server
+# Adding Device to Exosense Server through JSON-RPC
 All communication with the Exosense Server is conducted through its
 JSON-RPC interface.
 
@@ -555,7 +555,7 @@ Please see the "Exosense Server Usage" item at the top of this
 document for references to documentation that describes the exact
 mechanics of each step of adding a device to the Exosense Server.
 
-## Setting up the .exodmrc file
+## Setting up the .exodmrc file to access Exosense Server
 
 In order for the shell scripts to operate, they must know the URL
 where the Exosense Server resides, and how to authenticate to it. This
@@ -572,7 +572,7 @@ The USER_AUTH contains the user name and password assigned to you
 by Feuerlabs.
 
 
-## Uploading RPC Yang Specification
+## Uploading RPC Yang Specification to Exosense Server
 
 The yang specification for the exodemo application is located in the
 yang directory of this repository:
@@ -591,7 +591,7 @@ The server will send the following reply to indicate success.
 
     {"result":{"result":"ok"},"id":"1","jsonrpc":"2.0"}
 
-## Adding a device type
+## Adding a device type to the Exosense Server
 A new device type needs to be created for the demo device. Since the
 exodemo application uses the default bert-rpc protocol (and not a
 plugin for a custom protocol), the following command can be used:
@@ -602,9 +602,9 @@ The server will send the following reply to indicate success.
 
     {"result":{"result":"ok"},"id":"1","jsonrpc":"2.0"}
 
-## Adding a configuration set
-A configuration set needs to be created in order to associate the uploaded Yang
-specification with the device:
+## Adding a configuration set to the Exosense Server
+A configuration set needs to be created in order to associate the
+uploaded Yang specification with the device:
 
     sh create-config-set.sh demoset exodemo.yang http://myurl.com:1234
 
@@ -626,7 +626,7 @@ The server will send the following reply to indicate success.
 
     {"result":{"result":"ok"},"id":"1","jsonrpc":"2.0"}
 
-## Adding a device
+## Adding a device to the Exosense Server
 Create the device with the create-device.sh script:
 
     sh create-device.sh demo-1 demotype demoset 1234567890 0987654321
@@ -638,7 +638,8 @@ The device ID, which must be unique for the user.
 The device type, as specified by the create-device-type.sh script above.
 
 - `demoset`<br>
-The configuration set, as specified by the create-config-set.sh script above.
+The configuration set, as specified by the create-config-set.sh script
+above.
 
 - `1234567890`<br>
 The server key that the Exosense Server will use to authenticate
@@ -658,7 +659,7 @@ The server will send the following reply to indicate success.
     {"result":{"result":"ok"},"id":"1","jsonrpc":"2.0"}
 
 
-# Sending RPC to Device
+# Invoking RPC on the Device by sending JSON-RPC to Exosense Server
 
 ## Device running in desktop environment
 The exosense demo application is located in the exodemo repository at:
@@ -683,7 +684,7 @@ their corresponding values setup with the create-device.sh script.
 See the "Setting the device identity through Linux boot parameters"
 Chapter for details.
 
-## Setting up a shell script
+## Creating shell script sending JSON-RPC to Exosense Server
 The exodemo.yang specification (provided by the exodemo repo),
 contains a single command that can be sent from the server to the
 device. The yang fragment looks as follows:
@@ -753,17 +754,17 @@ Finally, this method can be integrated into a shell script that uses curl:
 
 
 Invoking this shell script will parse the ~/.exodmrc file to retrieve
-$USER_AUTH and $URL, and then invoke curl to send the command to the
-device id given in the first command line argument, with `dutaion` set
-to the second argument.
+$USER_AUTH and $URL (the Exosense Server address), and then invoke
+curl to send the command to the device id given in the first command
+line argument, with `dutaion` set to the second argument.
 
 See the "Setting up the .exodmrc file" chapter for details on
 $USER_AUTH and $URL.
 
 
 ## Invoking the shell script
-When the shell script above is invoked, it will send the JSON-RPC command to the
-Exosense Server.
+When the shell script above is invoked, it will send the JSON-RPC
+command to the Exosense Server.
 
     sh beep.sh demo-1 1234
 
@@ -794,6 +795,18 @@ the server.
 
 The following chapters shows how to implement such a notification.
 
+## Clone the repos
+
+Since only Feuerlabs has push access to the demo code at
+`https://github.com/Feuerlabs/exodemo` and the Yocto build layer at
+`https://github.com/Feuerlabs/meta-exodemo`, these two repos should be
+cloned by the developer prior to modifying the code.
+
+See github documentation for detail on how to clone repos.
+
+Once cloned, check out meta-exodemo repo and modify
+`meta-exodemo/recipe/exodemo/erlang-exodemo.bb` so that its URL refers
+to the cloned `exodemo` repo as well.
 
 
 ## Modify the Yang specification
@@ -810,7 +823,8 @@ The notification has the following format in Yang:
       uses exo:std-callback;
     }
 
-Insert it anywhere in the `exodemo.yang` file.
+Insert it anywhere in the `exodemo/yang/exodemo.yang` file.
+
 
 ## Validate the edited Yang specification
 A changed yang specification should be validated prior to being
@@ -835,21 +849,20 @@ checked out exosense_specs repo.
 If pyang provides no output, the specification is valid and can be
 uploaded to the Exosense Server.
 
+
 ## Upload the modified Yang specification
 Use the `create-yang-module.sh` script to upload the `exodemo.yang`
 file to the Exosense Server:
 
     sh create-yang-module.sh user ~/work/exosense_demo/exodemo/yang/exodemo.yang
 
-Replace the `~/work/exosense_demo/exodemo/yang/exodemo.yang` path with the path to the
-modified specification.
+Replace the `~/work/exosense_demo/exodemo/yang/exodemo.yang` path with
+the path to the modified specification.
 
 The new specification will replace the old version in the Exosense Server.
 
 ## Update the Exosense demo application
-
-All code for the Exosense demo application is in the `src` subdirectory under top
-directory where `https://github.com/Feuerlabs/exodemo` has been checked out.
+All code for the Exosense demo application is in the `exodemo/src`.
 
 Notifications are sent back from the device by replacing the `ok`
 return value from `exodemo_rpc:beep` with a `{ notification, ...}`
@@ -884,28 +897,45 @@ Specifies the string value of the `extra` argument to the
 `beep-notification` call added to the `exosense.yang` file.
 
 ## Rebuild the Exosense demo application on desktop
-
-Go to the top of the checked out
-`https://github.com/Feuerlabs/exodemo` repository and recompile:
-
-    make
-
-If any changes have been made to the `priv/*.config` files, update the setup directory:
-
-    make setup
+Please see the `https://github.com/Feuerlabs/exodemo` repository and
+its README.md file for instructions on how to recompile and launch the
+Exosense demo application in a desktop environment.
 
 
-Relaunch the Exosense demo application:
+## Installing recompiled Erlang beam files on Device
+If only erlang beam files have been changed, they can be copied out to
+the target hardware through scp:
 
-    sh local_start_demo.sh
+    scp exodemo/ebin/exodemo_rpc.beam \
+		192.168.0.10:/usr/lib/erlang/lib/exodemo-*/ebin/
 
+Replace the IP address with the address of the device.
 
 ## Rebuilding the flashable Exosense demo image
 
+### Commit the changes to the repo
+Before a new image can be built, the changes to the exodemo code must
+be commited and pushed to the repository:
 
-# Fault searching
+	git commit -m "Added notification" -a
+	git push
+	
 
-## Crash with no connect
-Check that ethernet is unplugged.
-Check that bootparams/env/config is setup
+### Clean out the yocto recipe
+In order for yocto to pull the changed code from the repo, it must
+first be cleaned out.
+
+    cd $YOCTO
+    . oe-init-build-env $BUILD
+	bitbake -c cleanall erlang-exodemo
+	
+Any other code modifications/pushes should be cleaned by bitbake as well	.
+
+### Rebuild the image
+Please follow the build instructions provided in "Build the image"
+chapter.
+
+### Flash the image
+Please follow the f lash instructions provided in "Image Flash
+Instructions for the SBC6845".
 
