@@ -7,7 +7,7 @@ SRCREV="AUTOINC"
 
 PR = "r0"
 
-SRC_URI = "git://github.com/Feuerlabs/nmea_0183.git;protocol=git;protocol=ssh;user=git"
+SRC_URI = "git://github.com/Feuerlabs/nmea_0183.git;protocol=git"
 
 S = "${WORKDIR}/git"
 

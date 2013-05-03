@@ -8,7 +8,7 @@ DEPENDS += " erlang-lager"
 
 PR = "r0"
 
-SRC_URI = "git://github.com/Feuerlabs/arygon_nfc.git;protocol=git;protocol=ssh;user=git"
+SRC_URI = "git://github.com/Feuerlabs/arygon_nfc.git;protocol=git"
 
 S = "${WORKDIR}/git"
 

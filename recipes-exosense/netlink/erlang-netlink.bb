@@ -16,7 +16,7 @@ SRCREV="AUTOINC"
 
 PR = "r0"
 
-SRC_URI = "git://github.com/Feuerlabs/netlink.git;protocol=git;protocol=ssh;user=git"
+SRC_URI = "git://github.com/Feuerlabs/netlink.git;protocol=git"
 
 S = "${WORKDIR}/git"
 

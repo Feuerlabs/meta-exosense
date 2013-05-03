@@ -9,7 +9,7 @@ SRCREV="0.8.2"
 
 PR = "r0"
 
-SRC_URI = "git://github.com/Feuerlabs/kvdb.git;protocol=git;protocol=ssh;user=git"
+SRC_URI = "git://github.com/Feuerlabs/kvdb.git;protocol=git"
 
 S = "${WORKDIR}/git"
 
