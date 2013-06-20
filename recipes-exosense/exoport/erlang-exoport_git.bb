@@ -9,7 +9,7 @@ SRCREV="AUTOINC"
 
 PR = "r0"
 
-SRC_URI = "git://github.com/Feuerlabs/exoport.git;protocol=git"
+SRC_URI = "git://github.com/Feuerlabs/exoport.git;protocol=git;tag=1.0"
 
 S = "${WORKDIR}/git"
 
