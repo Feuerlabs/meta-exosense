@@ -10,7 +10,7 @@ SRCREV="AUTOINC"
 PR = "r0"
 
 SRC_URI = "git://github.com/Feuerlabs/exoport.git;protocol=git;tag=1.1"
-SRC_REV = "d20c47122cd17db98ec6ff99673a067ac75d8d7c"
+SRC_REV = "78fd79e11cbefca8f667ed4357b7f01130a86be1"
 S = "${WORKDIR}/git"
 
 inherit tetrapak

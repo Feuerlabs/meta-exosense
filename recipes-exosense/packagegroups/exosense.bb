@@ -18,6 +18,8 @@ RDEPENDS_${PN} = "\
     erlang-lager \
     erlang-arygon-nfc \
     erlang-exo \
+    erlang-pppd-mgr \
+    erlang-netlink \
     erlang-fnotify \
     erlang-inpevt \
     erlang-nmea-0183 \
