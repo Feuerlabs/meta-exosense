@@ -3,7 +3,7 @@ SECTION = "devel"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=ff253ad767462c46be284da12dda33e8"
 
-SRCREV="1.0.0.fl.2"
+SRCREV="e5881d84cc06ec45e2bdddf68cc512f0e9cf9dab"
 
 PR = "r0"
 
