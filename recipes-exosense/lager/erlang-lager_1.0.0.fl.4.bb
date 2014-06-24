@@ -14,6 +14,6 @@ S = "${WORKDIR}/git"
 inherit tetrapak
 
 python () {
-    erlang_def_package("lager", "lager-*", "ebin priv", "src include README", d)
+    erlang_def_package("lager", "lager-*", "ebin priv", "src include README .gitignore test LICENSE TODO README.org rebar rebar.config dialyzer.ignore-warnings Makefile", d)
 }
 

@@ -216,6 +216,8 @@ do_install_append() {
 	${D}${erldir}/misc \
 	${D}${erldir}/Install
 
+    mkdir ${D}/usr/include
+
     EI_VSN=`sed -e"s|.*= *||g" ${S}/lib/erl_interface/vsn.mk`
     IC_VSN=`sed -e"s|.*= *||g" ${S}/lib/ic/vsn.mk`
     ln -s ../lib/erlang/usr/include/driver_int.h				${D}/usr/include/driver_int.h
