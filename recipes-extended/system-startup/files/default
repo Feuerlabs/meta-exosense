@@ -1,0 +1,8 @@
+# Defaults for harvest-startup initscript
+# sourced by /etc/init.d/harvest-startup
+
+#
+# should we start on boot?
+#
+
+STARTHARVEST="true"
