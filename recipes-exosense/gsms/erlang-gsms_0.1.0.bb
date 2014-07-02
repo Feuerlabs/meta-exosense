@@ -3,9 +3,9 @@ SECTION = "devel"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=54890ca48e62dae5a971448d09fd3284"
 
-SRCREV="d9a8c226bb3e1f06a0bbabc1cffae9714bd49d97"
+SRCREV="f3a96e58a66608b602e6ba86a05ebb6ec228858a"
 
-PR = "r0"
+PR = "r2"
 
 SRC_URI = "git://github.com/tolbrino/gsms.git;protocol=git;branch=integr"
 
