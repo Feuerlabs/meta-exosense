@@ -11,11 +11,6 @@ RREPLACES_${PN} = "exosense"
 RCONFLICTS_${PN} = "exosense"
 
 RDEPENDS_${PN} = "\
-    erlang \
-    erlang-ssl \
-    erlang-crypto \
-    erlang-public-key \
-    erlang-lager \
     erlang-arygon-nfc \
     erlang-exo \
     erlang-pppd-mgr \
